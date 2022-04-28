@@ -61,6 +61,7 @@ def plot(model, loss, iter, odir, lats):
   if best > args.batch_size-1:
     best = args.batch_size-1
   lts = lats()[best]
+  torch.save(lats()[best], os.path.join(odir, "final.pt"))
   model.gen_pil(lts.unsqueeze(0)).save(os.path.join(odir, f"{iter}.png"))
   return lts
 
